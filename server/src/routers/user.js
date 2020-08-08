@@ -1,16 +1,14 @@
 const express = require('express')
 const multer = require('multer')
-const path = require('path')
 const sharp = require('sharp')
 const bcrypt = require('bcryptjs')
+
 const auth = require('../middleware/auth')
 
 const User = require('../models/user')
 
 
 const router = new express.Router()
-
-
 
 //API to signup on the platform
 router.post('/users', async (req, res) => {
