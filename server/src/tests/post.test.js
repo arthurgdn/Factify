@@ -27,3 +27,4 @@ test('Doit créer un nouveau fun fact', async ()=>{
         score : 0
     })
 })
+
