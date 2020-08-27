@@ -34,7 +34,7 @@ const login = async (req,res)=>{
         const token = await user.generateAuthToken()
         res.send({user:user.toJSON(),token})
     }catch(e){
-        
+        console.log(e)
         res.status(400).send(e)
     }
 }

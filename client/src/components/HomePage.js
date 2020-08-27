@@ -1,3 +1,9 @@
 import React from 'react'
-
-export default ()=>(<p>This is a MERN stack boilerplate</p>)
+import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
+export default ()=>(
+    <div>
+        <LoginForm/>
+        <SignupForm/>
+    </div>
+)
