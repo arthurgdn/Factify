@@ -1,6 +1,10 @@
-const User = require('../../models/user')
+
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
+
+//Load models
+const User = require('../../models/user')
+const Post = require('../../models/post')
 
 const userOneId = new mongoose.Types.ObjectId()
 const userOne = {
@@ -25,6 +29,13 @@ const userTwo = {
     }]
 }
 
+const testPostId = new mongoose.Types.ObjectId()
+const testPost = {
+    "_id":testPostId,
+    "author":userTwoId,
+    "title":"This is a test for a fun fact",
+    "content" : "Content"
+}
 const setupUserOne = async ()=>{
     await User.deleteMany()
     
@@ -34,14 +45,21 @@ const setupUserTwo = async ()=>{
     await User.deleteMany()
     const user = new User({...userTwo})
     await user.save()
+    await Post.deleteMany()
+    const post = new Post({...testPost})
+    await post.save()
     
 }
+
+
 
 module.exports = {
     userOneId,
     userOne,
     userTwoId,
     userTwo,
+    testPost,
+    testPostId,
     setupUserOne,
     setupUserTwo
 }

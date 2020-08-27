@@ -10,7 +10,7 @@ require('./db/mongoose')
 //Charge les différents routeurs
 const userRouter = require('./routers/user')
 const postRouter = require('./routers/post')
-
+const feedRouter = require('./routers/feed')
 //Mise en place du serveur Express et de socket.io
 const app = express()
 
@@ -38,6 +38,7 @@ app.use(express.static(publicPath))
 //On ajoute les différentes routes 
 app.use(userRouter)
 app.use(postRouter)
+app.use(feedRouter)
 
 module.exports = server
 
