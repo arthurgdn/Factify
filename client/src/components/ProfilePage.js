@@ -25,8 +25,8 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user})=>{
         <div>
             {(stateProfile._id && stateProfile._id ===match.params.id)&& (
                 <div>
-                    <h3>{profile.firstName} {profile.lastName}</h3>
-                    {profile._id === user._id && (
+                    <h3>{stateProfile.firstName} {stateProfile.lastName}</h3>
+                    {stateProfile._id === user._id && (
                         <div>
                             <button onClick={()=>{startLogout()}}>Se déconnecter</button>
                             <button>Changer d'image</button>

@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import authReducer from '../reducers/auth'
 import userReducer from '../reducers/user'
 import profileReducer from '../reducers/profile'
-
+import feedReducer from '../reducers/feed'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 export default ()=>{
@@ -11,7 +11,8 @@ export default ()=>{
         
         auth: authReducer,
         user: userReducer,
-        profile: profileReducer
+        profile: profileReducer,
+        feed : feedReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
      )

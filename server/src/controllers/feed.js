@@ -1,5 +1,5 @@
 const Post = require('../models/post')
-
+const User = require('../models/user')
 
 // GET /feed/main?limit=10
 const mainFeed = async (req,res) =>{
@@ -11,7 +11,15 @@ const mainFeed = async (req,res) =>{
             const hasBeenDownvoted = post.downvotes.find((downvote)=>String(downvote.downvote.user)===String(req.user._id))
             return !hasBeenUpvoted && !hasBeenDownvoted && String(post.author!==req.user._id)
         })
-        res.send(mainFeed)
+        const formattedFeed = []
+        for(feedElement of mainFeed){
+            const author = await User.findById(feedElement.author)
+            if(!author){
+                return res.status(404).send()
+            }
+            formattedFeed.push({...feedElement.toJSON(),author})
+        }
+        res.send(formattedFeed)
     }catch(e){
         res.status(400).send(e)
     }
@@ -26,8 +34,15 @@ const popularFeed = async (req,res)=>{
             .limit(limit)
         
          fetchedFeed.sort((a,b)=>(a.upvotes.length-a.downvotes.length) - (b.upvotes.length-b.downvotes.length)< 0 ? 1:-1)
-        
-        res.send(fetchedFeed)
+         const formattedFeed = []
+         for(feedElement of fetchedFeed){
+             const author = await User.findById(feedElement.author)
+             if(!author){
+                 return res.status(404).send()
+             }
+             formattedFeed.push({...feedElement.toJSON(),author})
+         }
+         res.send(formattedFeed)
     }catch(e){
         console.log(e)
         res.status(400).send(e)
