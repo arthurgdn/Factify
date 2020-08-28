@@ -7,6 +7,8 @@ import NotFoundPage from '../components/NotFoundPage'
 import {Router,Switch,Route} from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
+import NewFactForm from '../components/NewFactForm'
+import ProfilePage from '../components/ProfilePage'
 const history = createBrowserHistory()
 const AppRouter = ()=>(
     <Router history={history}>
@@ -15,6 +17,8 @@ const AppRouter = ()=>(
             <Switch>
                 <PublicRoute path='/' component={HomePage} exact={true}/>
                 <PrivateRoute path="/home" component={FeedComponent} exact={true}/>
+                <PrivateRoute path="/publier" component={NewFactForm} exact={true}/>
+                <PrivateRoute path="/profil/:id" component={ProfilePage} exact={true}/>
                 <Route component={NotFoundPage}/>
             </Switch>
         </div>

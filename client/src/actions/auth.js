@@ -24,7 +24,7 @@ export const startRegister = (registration_form)=>{
         
         localStorage.setItem('factify_token',res.data.token)
         dispatch(register(res.data.token))
-        dispatch(loadUser(res.data.user));
+        dispatch(loadUser(res.data.user))
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
         
     }catch(e){

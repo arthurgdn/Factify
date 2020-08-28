@@ -13,6 +13,8 @@ router.post('/users', userController.signup)
 //API to get a user's info 
 router.get('/users/me',auth,userController.getUser)
 
+router.get('/user/:id',auth,userController.getSpecificUser)
+
 //API to login
 router.post('/users/login',userController.login)
 

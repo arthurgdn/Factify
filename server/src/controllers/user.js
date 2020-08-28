@@ -28,6 +28,18 @@ const getUser = async (req,res)=>{
     }
     
 }
+
+const getSpecificUser = async (req,res)=>{
+    try{
+        const user = await User.findById(req.params.id)
+        if(!user){
+            return res.status(404).send()
+        }
+        res.send(user)
+    }catch(e){
+        res.status(400).send(e)
+    }
+}
 const login = async (req,res)=>{
     try{
         const user = await User.findByCredentials(req.body.email,req.body.password)
@@ -115,6 +127,7 @@ const deleteUser = async (req,res)=>{
 module.exports = {
     signup,
     getUser,
+    getSpecificUser,
     login,
     upload,
     uploadImage,
