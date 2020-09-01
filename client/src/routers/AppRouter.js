@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 import NewFactForm from '../components/NewFactForm'
 import ProfilePage from '../components/ProfilePage'
+import PopularComponent from '../components/PopularComponent'
 const history = createBrowserHistory()
 const AppRouter = ()=>(
     <Router history={history}>
@@ -19,6 +20,7 @@ const AppRouter = ()=>(
                 <PrivateRoute path="/home" component={FeedComponent} exact={true}/>
                 <PrivateRoute path="/publier" component={NewFactForm} exact={true}/>
                 <PrivateRoute path="/profil/:id" component={ProfilePage} exact={true}/>
+                <PrivateRoute path="/tendances" component={PopularComponent} exact={true}/>
                 <Route component={NotFoundPage}/>
             </Switch>
         </div>

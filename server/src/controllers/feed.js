@@ -40,8 +40,12 @@ const popularFeed = async (req,res)=>{
              if(!author){
                  return res.status(404).send()
              }
-             formattedFeed.push({...feedElement.toJSON(),author})
+             const hasBeenUpvoted = feedElement.upvotes.find((upvote)=>String(upvote.upvote.user)===String(req.user._id))
+            const hasBeenDownvoted = feedElement.downvotes.find((downvote)=>String(downvote.downvote.user)===String(req.user._id)) 
+             formattedFeed.push({...feedElement.toJSON(),author,hasVoted: (!!hasBeenUpvoted || !!hasBeenDownvoted)})
          }
+         console.log('formatted',formattedFeed)
+         
          res.send(formattedFeed)
     }catch(e){
         console.log(e)

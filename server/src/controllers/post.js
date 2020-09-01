@@ -1,4 +1,5 @@
 const Post = require('../models/post')
+const { popularFeed } = require('./feed')
 
 const newPost = async (req,res)=>{
     try{
@@ -29,12 +30,13 @@ const upvote = async (req,res)=>{
             post.upvotes.push({upvote : {user:req.user._id}})
         }
 
-        await post.save()
-        res.status(200).send(post.toJSON())
+            await post.save()
+            
     }catch(e){
         console.log(e)
         res.status(400).send(e)
     }
+    await popularFeed(req,res)
 }
 
 
@@ -57,11 +59,12 @@ const downvote = async (req,res)=>{
         }
 
         await post.save()
-        res.status(200).send(post.toJSON())
     }catch(e){
         console.log(e)
         res.status(400).send(e)
     }
+    
+    await popularFeed(req,res)
 }
 
 module.exports = {

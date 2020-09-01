@@ -14,11 +14,8 @@ const FeedComponent =  ({user,feed,setFeedError,startSetFeed,startDownvote,start
         }
         
     },[])
+    
     useEffect(()=>{
-        console.log('voting')
-    },[startDownvote,startUpvote])
-    useEffect(()=>{
-        console.log('setting feed',feed)
         setStateFeed(feed[0])
     },[feed,startSetFeed])
 
@@ -30,16 +27,15 @@ const FeedComponent =  ({user,feed,setFeedError,startSetFeed,startDownvote,start
             <p>Logged in!</p>
             <Link to="/publier">Publier</Link>
             <Link to={"/profil/"+user._id}>{user.firstName} {user.lastName}</Link>
+            <Link to={"/tendances"}>Tendances</Link>
             {stateFeed && (
                 <div>
                     <FunFactComponent {...stateFeed} />
                     <button onClick={()=>{
                         startUpvote(stateFeed._id)
-                        console.log(stateFeed)
                     }}>Upvote</button>
                     <button onClick={()=>{
                         startDownvote(stateFeed._id)
-                        
                     }}>Downvote</button>
                 </div>
                 )}
