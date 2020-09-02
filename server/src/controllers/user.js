@@ -5,6 +5,7 @@ const path = require('path')
 
 
 const User = require('../models/user')
+const Post = require('../models/post')
 
 const signup = async (req, res) => {
     
@@ -40,7 +41,20 @@ const getSpecificUser = async (req,res)=>{
         if(!user){
             return res.status(404).send()
         }
-        res.send(user)
+        const userPosts = await Post.find({author:req.params.id})
+        
+        let upvotesReceived = 0
+        let downvotesReceived = 0
+        if(userPosts.length>0){
+            for(post of userPosts){
+                upvotesReceived += post.upvotes.length
+                downvotesReceived += post.downvotes.length
+            }
+        }
+        
+        const averageScore = userPosts.length>0?(upvotesReceived-downvotesReceived)/userPosts.length:0
+        const bestScorePost = Math.max.apply(Math, userPosts.map((post)=>post.upvotes.length-post.downvotes.length))
+        res.send({...user.toJSON(),userPosts,upvotesReceived,downvotesReceived,averageScore,bestScorePost})
     }catch(e){
         res.status(400).send(e)
     }

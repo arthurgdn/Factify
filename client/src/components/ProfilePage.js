@@ -7,7 +7,7 @@ import {startSetProfile} from '../actions/profile'
 import ImageUploader from 'react-images-upload'
 import axios from 'axios'
 
-const ProfilePage = ({match,startSetProfile,startLogout,profile,user})=>{
+const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history})=>{
     const [stateProfile,setStateProfile]=useState({})
     const [displayImageForm,setDisplayImageForm]=useState(false)
     const [profilePicture,setProfilePicture]=useState('')
@@ -20,6 +20,7 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user})=>{
             imageBody.append('avatar',profilePicture)
             
             await axios.post('/users/me/avatar',imageBody)
+            history.push('/profil/'+user._id)
         }
     }
     useEffect(()=>{
