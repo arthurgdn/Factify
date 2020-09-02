@@ -41,6 +41,7 @@
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^21.8.0",
     "react-dom": "^16.13.1",
+    "react-images-upload": "^1.2.8",
     "react-modal": "^3.11.2",
     "react-model": "^3.0.4",
     "react-redux": "^7.2.0",

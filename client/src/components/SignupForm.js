@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import { startRegister } from '../actions/auth'
 import { Redirect } from 'react-router-dom'
-const SignupForm = (isAuthenticated,registerError,startRegister,history)=>{
+const SignupForm = ({isAuthenticated,registerError,startRegister,history})=>{
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
@@ -14,12 +14,13 @@ const SignupForm = (isAuthenticated,registerError,startRegister,history)=>{
         setError(registerError)
         console.log(registerError)
     },[registerError])
-    const onSubmit = async (e)=>{
+    const onSubmit = async  (e)=>{
         e.preventDefault()
         if(password!==confirmPassword){
             setError('Les deux mots de passe doivent correspondre')
         }else{
-            startRegister({email,password,firstName,lastName})
+            const formData = {email,password,firstName,lastName}
+            startRegister(formData)
         }
     }
     if(isAuthenticated){

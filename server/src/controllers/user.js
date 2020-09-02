@@ -1,6 +1,7 @@
 const multer = require('multer')
 const sharp = require('sharp')
 const bcrypt = require('bcryptjs')
+const path = require('path')
 
 
 const User = require('../models/user')
@@ -9,6 +10,10 @@ const signup = async (req, res) => {
     
     const user = new User({...req.body})
     try{
+        const anonymousPath = path.join(__dirname,'../../avatars/anonymous.png')
+    
+        const buffer =await  sharp(anonymousPath).toBuffer()
+        user.profilePicture = buffer
         const token = await user.generateAuthToken()
         await user.save()
         
