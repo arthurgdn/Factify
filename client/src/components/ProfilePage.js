@@ -44,6 +44,9 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history})=>
                     <h3>{stateProfile.firstName} {stateProfile.lastName}</h3>
                     
                     <img className="header__picture" src={process.env.DEV_URL+"/users/"+stateProfile._id+"/avatar"}/>
+                    <p>Nombre d'upvotes reçus : {stateProfile.upvotesReceived}</p>
+                    <p>Nombre de downvotes reçus : {stateProfile.downvotesReceived}</p>
+                    <p>Score moyen : {stateProfile.averageScore}</p>
                     {stateProfile._id === user._id && (
                         <div>
                             <button onClick={()=>{startLogout()}}>Se déconnecter</button>
