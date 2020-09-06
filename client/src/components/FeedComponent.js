@@ -23,22 +23,14 @@ const FeedComponent =  ({user,feed,setFeedError,startSetFeed,startDownvote,start
         setError(setFeedError)
     },[setFeedError])
     return (
-        <div> 
-            <p>Logged in!</p>
-            <Link to="/publier">Publier</Link>
-            <Link to={"/profil/"+user._id}>{user.firstName} {user.lastName}</Link>
-            <Link to={"/tendances"}>Tendances</Link>
-            {stateFeed && (
-                <div>
-                    <FunFactComponent {...stateFeed} />
-                    <button onClick={()=>{
-                        startUpvote(stateFeed._id)
-                    }}>Upvote</button>
-                    <button onClick={()=>{
-                        startDownvote(stateFeed._id)
-                    }}>Downvote</button>
+        <div className="content-container"> 
+            <h3 className="form__title">Fil général</h3>
+            {stateFeed ? (
+                <div className="form__container">
+                    <FunFactComponent {...stateFeed} startDownvote={startDownvote} startUpvote={startUpvote} />
+                    
                 </div>
-                )}
+                ):(<p>Pas de nouveau fun fact à afficher pour le moment. Vous pouvez consulter les tendances du moment ou alors publier vous même !</p>)}
 
         </div>
     
