@@ -1,0 +1,87 @@
+.login__fieldset{
+    border : 1px solid #cacccd;
+    border-radius:10px;
+    background: $off-white;
+    margin : 0 $s-size;
+    padding : $m-size $m-size $xs-size $m-size ;
+    @media (max-width : $desktop-breakpoint){
+        margin-bottom:$m-size;
+    }
+}
+
+.login__form{
+    display: flex;
+    flex-direction : row;
+    @media (max-width : $desktop-breakpoint){
+        flex-direction: column;
+        
+    }
+    align-items: center;
+}
+.login__item{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    @media (max-width : $desktop-breakpoint){
+        margin-bottom:$s-size;
+    }
+}
+.login__form__error{
+    margin: 0;
+    font-style : italic;
+    color : darkgray;
+    text-align: center;
+    font-size : $font-size-small;
+    @media (max-width : $desktop-breakpoint){
+        
+    }
+}
+
+.login__input{
+    margin : 0 10px;
+    background: white;
+    border : 1px solid #cacccd;
+    border-radius : 10px;
+    height:35px;
+    padding : $s-size;
+    font-size: $font-size-large;
+    font-weight : 300;
+    &:focus {
+        border: 1px solid darkblue;
+        background: lighten($off-white,2%);
+        border-bottom: 5px solid darkblue;
+    }
+
+}
+
+.login__button{
+    
+    background: white;
+    border : 1px solid #cacccd;
+    border-radius : 10px;
+    height:35px;
+    padding : auto;
+    font-size: $font-size-large;
+    font-weight : 300;
+    transition : background .3s ease;
+    
+    &:hover {
+        background:$off-white;
+        border: 1px solid darkblue;
+    }
+    &:active {
+        background:lighten(darkblue,10%);
+    }
+}
+
+.login__footer{
+    display: flex;
+    
+    
+    justify-content: space-between;
+    @media (max-width : $desktop-breakpoint){
+        flex-direction: column;
+        margin: 0 auto;
+    }
+}
+

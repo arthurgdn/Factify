@@ -27,42 +27,67 @@ const SignupForm = ({isAuthenticated,registerError,startRegister,history})=>{
         <Redirect to="/home"/>
     }
     return (
-        <div>
-            <h1>S'inscire</h1>
-            <form onSubmit={onSubmit}>
+        <div className="showcase__signup">
+            <div className="signup__container">
+                <h1 className='signup__text'>Créer un compte</h1>
+            <form className="signup__form" onSubmit={onSubmit}>
+            <div className='signup__form-group'>
                 <input
                     type="text"
+                    className="signup__input"
                     value={firstName}
                     onChange={(e)=>setFirstName(e.target.value)}
                     placeholder="Prénom"
                 />
+            </div>
+            <div className='signup__form-group'>
                 <input
                     type="text"
                     value={lastName}
+                    className="signup__input"
                     onChange={(e)=>setLastName(e.target.value)}
                     placeholder="Nom"
                 />
+            </div>
+            <div className='signup__form-group'>
                 <input
                     type="email"
+                    className="signup__input"
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     placeholder="Email"
                 />
+            </div>
+            <div className='signup__form-group'>
                 <input
                     type="password"
+                    className="signup__input"
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     placeholder="Mot de passe"
                 />
+            </div>
+            <div className='signup__form-group'>
                 <input
                     type="password"
+                    className="signup__input"
                     value={confirmPassword}
                     onChange={(e)=>setConfirmPassword(e.target.value)}
                     placeholder="Confirmer mot de passe"
                 />
-                <button>Inscription</button>
+            </div>
+                
+                
+                
+                
+                
+            {error && (<p>{error}</p>)}
+            <div className="signup__form-group">
+              <input type='submit' className="signup__button"  value="Inscription" />
+            </div>
             </form>
             
+        </div>
         </div>
         )
 }
