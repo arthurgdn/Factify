@@ -6,8 +6,10 @@ import {startSetProfile} from '../actions/profile'
 
 import ImageUploader from 'react-images-upload'
 import axios from 'axios'
+import PostsList from './PostsList'
+import { startUpvote, startDownvote } from '../actions/popularFeed'
 
-const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history})=>{
+const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history,startDownvote,startUpvote})=>{
     const [stateProfile,setStateProfile]=useState({})
     const [displayImageForm,setDisplayImageForm]=useState(false)
     const [profilePicture,setProfilePicture]=useState('')
@@ -35,25 +37,34 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history})=>
 
     useEffect(()=>{
         setStateProfile(profile)
+        console.log(profile,'profil')
     },[startSetProfile,profile])
 
     return (
-        <div>
+        <div className="content-container">
             {(stateProfile._id && stateProfile._id ===match.params.id)&& (
                 <div>
-                    <h3>{stateProfile.firstName} {stateProfile.lastName}</h3>
+                    <div className="profile__title">
+                        <h3 className="form__title">{stateProfile.firstName} {stateProfile.lastName}</h3>
+                        <div>{stateProfile._id ===user._id && (<button className="form__button" onClick={()=>{startLogout()}}>Se déconnecter</button>)}</div>
+                    </div>
+                   <div className="profile__section-divider">
+                        <img className="profile__picture" src={process.env.DEV_URL+"/users/"+stateProfile._id+"/avatar"}/>
+                        <div className="profile__stats">
+                            <p>Nombre de fun facts publiés : {stateProfile.userPosts.length}</p>
+                            <p>Nombre de votes + reçus : {stateProfile.upvotesReceived}</p>
+                            <p>Nombre de votes - reçus : {stateProfile.downvotesReceived}</p>
+                            <p>Score moyen : {stateProfile.averageScore}</p>
+                        </div>
+                    </div>
                     
-                    <img className="header__picture" src={process.env.DEV_URL+"/users/"+stateProfile._id+"/avatar"}/>
-                    <p>Nombre d'upvotes reçus : {stateProfile.upvotesReceived}</p>
-                    <p>Nombre de downvotes reçus : {stateProfile.downvotesReceived}</p>
-                    <p>Score moyen : {stateProfile.averageScore}</p>
                     {stateProfile._id === user._id && (
                         <div>
-                            <button onClick={()=>{startLogout()}}>Se déconnecter</button>
-                            <button onClick={()=>setDisplayImageForm(!displayImageForm)}>Changer d'image</button>
+                            
+                            <button className="form__button profile__button" onClick={()=>setDisplayImageForm(!displayImageForm)}>Changer de photo</button>
                             {displayImageForm && (
-                                <div>
-                                    <h3>Modifier la photo de profil</h3>
+                                <div className="profile__form-section">
+                                    <h3 className="form__title">Modifier la photo de profil</h3>
                                     <ImageUploader
                                         fileContainerStyle={
                                             {background: '#fafafa',
@@ -69,11 +80,15 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history})=>
                                         withPreview={true}
                                         singleImage={true}
                                     />
-                                    <button onClick={savePicture}>Enregistrer</button>
+                                    <button className="form__button" onClick={savePicture}>Enregistrer</button>
                                 </div>
-                            )}    
-                        </div>
-                    )}
+                            
+                            )} </div> )} 
+                            {stateProfile.userPosts.length>0 && (<h3 className="form__title">Fun facts publiés : </h3>)}
+                            <PostsList startUpvote={startUpvote} startDownvote={startDownvote} postsList={stateProfile.userPosts}/>  
+                        
+                    
+
                 </div>
             )}
         </div>
@@ -87,7 +102,9 @@ const mapStateToProps = (state)=>({
 
 const mapDispatchToProps = (dispatch)=>({
     startSetProfile: (id)=>dispatch(startSetProfile(id)),
-    startLogout : ()=>dispatch(startLogout())
+    startLogout : ()=>dispatch(startLogout()),
+    startUpvote : (id)=>dispatch(startUpvote(id)),
+    startDownvote : (id)=>dispatch(startDownvote(id))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProfilePage)

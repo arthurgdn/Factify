@@ -1,0 +1,30 @@
+.profile__form-section{
+    border-bottom: 1px solid lightgray;
+}
+
+.profile__section-divider{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    @media (max-width : $desktop-breakpoint){
+        flex-direction: column;
+    }
+}
+
+.profile__picture{
+    width:auto;
+    height:auto;
+}
+
+.profile__stats{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__title{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}

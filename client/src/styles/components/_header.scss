@@ -1,0 +1,113 @@
+.header{
+    
+    background:darkblue;
+    
+    padding:0;
+    margin:0;
+    width:auto;
+    overflow-x: hidden;
+    @media (min-width : $desktop-breakpoint){
+        z-index: 0;
+        flex: 0 10vh;
+    }
+    
+    
+    
+    
+}
+
+.header__title{
+    color:white;
+    font-family: Ink Free, Helvetica,Arial, sans-serif;
+    text-decoration: none;
+    flex-grow:1px;
+    padding : 0 30px;
+    margin: 0 $s-size;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: $font-size-xlarge;
+
+    @media (max-width : $desktop-breakpoint){
+        font-size: $font-size-large;
+        padding: 0 15px;
+    }
+    
+    
+    
+}
+
+.header__profile{
+    flex-grow:1px;
+    display:flex;
+    align-items: center;
+    
+}
+.header__content{
+    align-items: center;
+    padding : 0;
+    margin:0;
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    flex-direction: row;
+    
+    
+}
+
+.header__picture{
+    width : 50px;
+    height : 50px;
+    margin : 0 $m-size;
+    border-radius:30px;
+    padding : 0px;
+}
+
+.header__user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    text-decoration: none;
+    margin: 0 $m-size;
+    padding:  $s-size;
+    font-size : $font-size-large;
+    transition : background .3s ease;
+    
+    &:hover {
+        background:darken(darkblue,15%)
+    }
+    &:active {
+        background:darken(darkblue,15%)
+    }
+    @media (max-width : $desktop-breakpoint){
+        font-size: $font-size-medium;
+        padding: 0 $s-size;
+    }
+
+}
+
+.header__subheader{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.header__subheader-link{
+    text-decoration: none;
+    color: white;
+    font-size: $font-size-large;
+    font-weight: 600;
+    padding:  $s-size 0 ;
+    text-align: center;
+    width:100%;
+    transition: background .5s ease;
+    &:hover {
+        color: darkblue;
+        background: white;
+    }
+    @media (max-width : $desktop-breakpoint){
+        font-size: $font-size-medium;
+        padding:$xs-size;
+    }
+}

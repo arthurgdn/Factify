@@ -51,11 +51,21 @@ const getSpecificUser = async (req,res)=>{
                 downvotesReceived += post.downvotes.length
             }
         }
-        
+        const formattedFeed = []
+        for(feedElement of userPosts){
+            const author = await User.findById(feedElement.author)
+            if(!author){
+                return res.status(404).send()
+            }
+            const hasBeenUpvoted = feedElement.upvotes.find((upvote)=>String(upvote.upvote.user)===String(req.user._id))
+           const hasBeenDownvoted = feedElement.downvotes.find((downvote)=>String(downvote.downvote.user)===String(req.user._id)) 
+            formattedFeed.push({...feedElement.toJSON(),author,hasVoted: (!!hasBeenUpvoted || !!hasBeenDownvoted)})
+        }
         const averageScore = userPosts.length>0?(upvotesReceived-downvotesReceived)/userPosts.length:0
         const bestScorePost = Math.max.apply(Math, userPosts.map((post)=>post.upvotes.length-post.downvotes.length))
-        res.send({...user.toJSON(),userPosts,upvotesReceived,downvotesReceived,averageScore,bestScorePost})
+        res.send({...user.toJSON(),userPosts:formattedFeed,upvotesReceived,downvotesReceived,averageScore,bestScorePost})
     }catch(e){
+        console.log(e)
         res.status(400).send(e)
     }
 }

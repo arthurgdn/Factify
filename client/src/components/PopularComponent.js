@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import {connect} from 'react-redux'
+
 import {startSetPopularFeed, startUpvote, startDownvote} from '../actions/popularFeed'
+import PostsList from './PostsList'
 
 const PopularComponent = ({startSetPopularFeed,popularFeed,setPopularFeedError,startUpvote,startDownvote})=>{
     const [statePopularFeed,setStatePopularFeed]=useState('')
@@ -20,26 +22,14 @@ const PopularComponent = ({startSetPopularFeed,popularFeed,setPopularFeedError,s
         setError(setPopularFeedError)
     },[setPopularFeedError])
     return (
-        <div>
-            {statePopularFeed && (
-                <div>
-                    {statePopularFeed.map(({_id,title,content,hasVoted,score})=>(
-                        <div key={_id} id={_id}>
-                            <h3>{title}</h3>
-                            <p>{content}</p>
-                            <p>Score : {score}</p>
-                            {hasVoted ? (<p>Vous avez déjà voté</p>):(
-                                <div>
-                                    <button onClick={()=>startUpvote(_id)}>Upvote</button>
-                                    <button onClick={()=>startDownvote(_id)}>Downvote</button>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-                )}
+        <div className="content-container">
+            <h3 className="form__title">Tendances</h3>
+            {statePopularFeed && (<PostsList postsList={statePopularFeed} startUpvote={startUpvote} startDownvote={startDownvote}/>)}
         </div>
+                
     )
+
+    
 }
 
 const mapStateToProps = (state)=>({

@@ -1,0 +1,130 @@
+.fun-fact__section{
+    margin-top:$m-size;
+    border-top: 1px ridge darkblue;
+    padding: 0 $m-size;
+    background:darken($off-white,1%);
+    h2{
+        margin: $s-size;
+    }
+}
+
+
+
+.fun-fact__header-bottom{
+    
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0 $s-size;
+    border-bottom: 1px solid lightgray;
+    div{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    span{
+        font-weight:200;
+        font-size: $font-size-small;
+        color:$grey;
+        margin : 0 $s-size;
+        @media (min-width : $desktop-breakpoint){
+            margin-right:$l-size;
+        }
+                       
+        }
+    }
+        
+
+
+
+.fun-fact__subheader{
+    display:flex;
+    flex-direction: row;
+    
+    text-decoration: none;
+    align-items: center;
+    
+    img{
+        margin-top:0;
+    }
+    p{
+        
+        margin-left: $m-size;
+        font-weight: 400;
+        font-size:$font-size-medium;
+        color:black;
+    }
+}
+
+.fun-fact__display{
+    border-radius:25px;
+    margin:$m-size $s-size;
+    padding: 0 0 $s-size 0 ;
+    
+    background:lighten($off-white,2%);
+    box-shadow: 6px 6px 6px darken($off-white,2%);
+}
+
+.fun-fact__picture{
+    margin:0;
+    width : 26px;
+    height : 26px;
+    border-radius:13px;
+    padding : 0px;
+}
+
+.fun-fact__content{
+    margin: $s-size $l-size $s-size $l-size;
+}
+
+.fun-fact__italic{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    font-style: italic;
+    text-align: center;
+    align-items: center;
+
+}
+
+.fun-fact__center-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.fun-fact__vote-section{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.fun-fact__vote-button{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    background:darken($off-white,3%);
+    justify-content: space-evenly;
+    width:20rem;
+    height:6rem;
+    border: 1px solid lightgray;
+    transition: background .3s ease;
+    &:hover{
+        background: $off-white;
+    }
+    @media (max-width : $desktop-breakpoint){
+        width:10rem;
+    }
+}
+
+.fun-fact__vote-button-right{
+    border-bottom-right-radius: 3rem;
+    border-top-right-radius: 3rem;
+}
+
+.fun-fact__vote-button-left{
+    border-bottom-left-radius: 3rem;
+    border-top-left-radius: 3rem;
+}

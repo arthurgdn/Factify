@@ -10,7 +10,7 @@ export default ()=>{
 
     const onSubmit= (e)=>{
         e.preventDefault()
-        axios.post('/posts',{title,content})
+        axios.post('/posts',{title,content:content.replace(/\n\r?/g, '<br />')})
             .then((res)=>{
                 setTitle('')
                 setContent('')
@@ -18,28 +18,34 @@ export default ()=>{
     }
     const disabled=title.length===0 || content.length===0
     return (
-        <div>
-            <h3>Publier un fun fact</h3>
-            <form onSubmit={onSubmit}>
+        <div className="content-container">
+            <h3 className="form__title">Nouveau fun fact</h3>
+            <p className="form__info-text">
+                Fun fact : un fait amusant qui peut être à propos de n'importe quoi tant qu'il est original, drôle, véridique, hors du commun. <br/>
+                Pour un maximum de visibilité et de votes, privilégiez des anecdotes simples et claires, et pouvant être vérifiées. Choisissez un titre évocateur et attractif.
+            </p>
+            <form onSubmit={onSubmit} className="form__container">
                 <input
                     value={title}
                     onChange={(e)=>{setTitle(e.target.value)}}
                     placeholder="Titre"
                     required
+                    className="form__input"
                 />
                 <textarea
                     value={content}
                     onChange={(e)=>{setContent(e.target.value)}}
-                    placeholder="Décrivez ici un fun fact original"
+                    placeholder="Expliquez ici en quoi consiste votre fun fact"
                     required
+                    className="form__textarea"
                 >
                 
                 
                 </textarea>
 
-                <button disabled={disabled}>Publier</button>
+                <button className="form__button" disabled={disabled}>Publier</button>
             </form>
-            {error && (<p>{error}</p>)}
+            {error && (<p className="form__error">{error}</p>)}
         </div>
     )
 }
