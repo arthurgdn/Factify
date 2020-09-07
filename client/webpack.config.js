@@ -24,7 +24,12 @@ module.exports = (env)=>{
                 loader : 'babel-loader',
                 test: /\.js$/,
                 exclude : /node_modules/
-            },{
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            },
+            {
             use :CSSExtract.extract({
                 use : [{loader:'css-loader',options:{sourceMap:true}},{loader:'sass-loader',options:{sourceMap:true}}]
             }),

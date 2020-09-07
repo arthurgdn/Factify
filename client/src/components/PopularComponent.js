@@ -12,8 +12,8 @@ const PopularComponent = ({startSetPopularFeed,popularFeed,setPopularFeedError,s
             startSetPopularFeed()
         }
         
-    },[])
-    
+    },[]) 
+     
     useEffect(()=>{
         setStatePopularFeed(popularFeed)
     },[popularFeed,startSetPopularFeed])

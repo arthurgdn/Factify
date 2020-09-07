@@ -39,7 +39,7 @@ const popularFeed = async (req,res)=>{
              const author = await User.findById(feedElement.author)
              if(!author){
                  return res.status(404).send()
-             }
+             } 
              const hasBeenUpvoted = feedElement.upvotes.find((upvote)=>String(upvote.upvote.user)===String(req.user._id))
             const hasBeenDownvoted = feedElement.downvotes.find((downvote)=>String(downvote.downvote.user)===String(req.user._id)) 
              formattedFeed.push({...feedElement.toJSON(),author,hasVoted: (!!hasBeenUpvoted || !!hasBeenDownvoted)})

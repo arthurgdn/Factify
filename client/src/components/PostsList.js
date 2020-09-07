@@ -6,7 +6,7 @@ import {RiNumbersFill} from 'react-icons/ri'
 import {FiCheckCircle} from 'react-icons/fi'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 
-export default ({postsList,startDownvote,startUpvote})=>(
+export default ({postsList,startDownvote,startUpvote,displayVote=true})=>(
     <div className="form__container">
     {postsList.map(({_id,author,title,content,hasVoted,score,createdAt})=>(
                         
@@ -33,15 +33,17 @@ export default ({postsList,startDownvote,startUpvote})=>(
             </div>
             
             <p className="fun-fact__content" dangerouslySetInnerHTML={{ __html:content }}></p>
-            
-            {hasVoted ? (<div className="fun-fact__center-container"> <div className="fun-fact__italic"><FiCheckCircle/> <p>Vous avez déjà voté</p></div></div>):(
-                <div className="fun-fact__center-container">
-                    <div className="fun-fact__vote-section">
-                        <button className="fun-fact__vote-button fun-fact__vote-button-left" onClick={()=>startUpvote(_id)}><BiUpvote/> Voter +</button>
-                        <button className="fun-fact__vote-button fun-fact__vote-button-right" onClick={()=>startDownvote(_id)}><BiDownvote/> Voter -</button>
+            {displayVote && (<div>
+                {hasVoted ? (<div className="fun-fact__center-container"> <div className="fun-fact__italic"><FiCheckCircle/> <p>Vous avez déjà voté</p></div></div>):(
+                    <div className="fun-fact__center-container">
+                        <div className="fun-fact__vote-section">
+                            <button className="fun-fact__vote-button fun-fact__vote-button-left" onClick={()=>startUpvote(_id)}><BiUpvote/> Voter +</button>
+                            <button className="fun-fact__vote-button fun-fact__vote-button-right" onClick={()=>startDownvote(_id)}><BiDownvote/> Voter -</button>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+                </div>)}
+            
         </div>))}
     </div>
 )

@@ -17,7 +17,7 @@ const FeedComponent =  ({user,feed,setFeedError,startSetFeed,startDownvote,start
     
     useEffect(()=>{
         setStateFeed(feed[0])
-    },[feed,startSetFeed])
+    },[feed,startSetFeed,user])
 
     useEffect(()=>{
         setError(setFeedError)

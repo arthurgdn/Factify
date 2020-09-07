@@ -2,7 +2,8 @@ import React,{useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import { startRegister } from '../actions/auth'
 import { Redirect } from 'react-router-dom'
-const SignupForm = ({isAuthenticated,registerError,startRegister,history})=>{
+import { startSetFeed } from '../actions/feed'
+const SignupForm = ({isAuthenticated,registerError,startRegister,history,startSetFeed})=>{
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
@@ -21,6 +22,7 @@ const SignupForm = ({isAuthenticated,registerError,startRegister,history})=>{
         }else{
             const formData = {email,password,firstName,lastName}
             startRegister(formData)
+            startSetFeed()
         }
     }
     if(isAuthenticated){
@@ -97,6 +99,7 @@ const mapStateToProps = (state)=>({
     registerError:state.auth.registerError
 })
 const mapDispatchToProps = (dispatch)=>({
-    startRegister : (formData)=> dispatch(startRegister(formData))
+    startRegister : (formData)=> dispatch(startRegister(formData)),
+    startSetFeed : ()=>dispatch(startSetFeed())
 })
 export default connect(mapStateToProps,mapDispatchToProps)(SignupForm)

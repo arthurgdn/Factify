@@ -40,6 +40,7 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history,sta
         console.log(profile,'profil')
     },[startSetProfile,profile])
 
+
     return (
         <div className="content-container">
             {(stateProfile._id && stateProfile._id ===match.params.id)&& (
@@ -54,7 +55,7 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history,sta
                             <p>Nombre de fun facts publiés : {stateProfile.userPosts.length}</p>
                             <p>Nombre de votes + reçus : {stateProfile.upvotesReceived}</p>
                             <p>Nombre de votes - reçus : {stateProfile.downvotesReceived}</p>
-                            <p>Score moyen : {stateProfile.averageScore}</p>
+                            <p>Score moyen : {stateProfile.averageScore.toFixed(2)}</p>
                         </div>
                     </div>
                     
@@ -85,7 +86,7 @@ const ProfilePage = ({match,startSetProfile,startLogout,profile,user,history,sta
                             
                             )} </div> )} 
                             {stateProfile.userPosts.length>0 && (<h3 className="form__title">Fun facts publiés : </h3>)}
-                            <PostsList startUpvote={startUpvote} startDownvote={startDownvote} postsList={stateProfile.userPosts}/>  
+                            <PostsList displayVote={false} startUpvote={startUpvote} startDownvote={startDownvote} postsList={stateProfile.userPosts}/>  
                         
                     
 

@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const http = require('http')
-
+const cors = require('cors')
 //Connexion à la base de données
 require('./db/mongoose')
 
@@ -18,6 +18,13 @@ const app = express()
 const server = http.createServer(app)
 
 const publicPath = path.join(__dirname,'../public/')
+
+const corsOptions = {
+    origin: process.env.FRONTEND_URL,
+    optionsSuccessStatus: 200
+  }
+
+app.use(cors(corsOptions))
 
 //Utilisation de bodyParser pour faciliter l'exploitation des requetes
 app.use(bodyParser.json({limit: '50mb'}));
