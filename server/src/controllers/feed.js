@@ -27,7 +27,7 @@ const mainFeed = async (req,res) =>{
 
 const popularFeed = async (req,res)=>{
     try{
-        const sevenDays = (3600*24*1000)*7
+        const sevenDays = (3600*24*1000)*365
         const limit = req.query.limit?req.query.limit:20
         const fetchedFeed = await Post
             .find({ "createdAt": { "$gte": (new Date()).getTime() - sevenDays}})
