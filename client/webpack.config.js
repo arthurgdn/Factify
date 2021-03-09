@@ -30,6 +30,15 @@ module.exports = (env)=>{
                 loader: 'svg-inline-loader'
             },
             {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                  {
+                    loader: 'url-loader',
+                    options : {esModule:false}
+                  },
+                ],
+              },
+            {
             use :CSSExtract.extract({
                 use : [{loader:'css-loader',options:{sourceMap:true}},{loader:'sass-loader',options:{sourceMap:true}}]
             }),

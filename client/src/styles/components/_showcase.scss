@@ -24,8 +24,7 @@
 .showcase__signup{
     
     @media (min-width : $desktop-breakpoint){
-        flex: 1;
-        order: 1;
+        flex : 1;
     }
     background : lighten($off-white,2%)
 }
@@ -67,6 +66,13 @@
         font-size: $font-size-xlarge;
         font-weight: 600;
         margin: $s-size 0;
+    }
+    img{
+        margin: $xs-size;
+        @media (max-width : $desktop-breakpoint){
+            width: 90%;
+            height:90%;
+        }
     }
 
 

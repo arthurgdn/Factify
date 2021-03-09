@@ -1,6 +1,6 @@
 .signup__container{
     width : 50%;
-    margin : 0 auto;
+    margin : $l-size auto;
     @media (max-width : $desktop-breakpoint){
         width: 90%;
     }
@@ -12,7 +12,6 @@
 .signup__form{
     display:flex;
     flex-direction: column;
-    
 }
 
 .signup__form-group{

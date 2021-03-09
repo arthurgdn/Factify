@@ -7,6 +7,7 @@ import {FiCheckCircle} from 'react-icons/fi'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 
 export default ({postsList,startDownvote,startUpvote,displayVote=true})=>{
+    //feed index tracks where is the pointer in the feed to display them by batch
     const [feedIndex,setFeedIndex]=useState(10)
     return (
         <div className="form__container">
